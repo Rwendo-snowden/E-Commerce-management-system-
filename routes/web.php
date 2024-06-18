@@ -48,7 +48,11 @@ Route::get('/allproducts',[pages::class,'view_all_products']);
 
 Route::post('/add_to_cart/{id}',[pages::class,'add_to_cart']);
 
+Route::get('/showcart',[pages::class,'showcart']);
 
+Route::get('/delete_cart/{id}',[pages::class,'delete_cart']);
+
+Route::get('/cash_order',[pages::class,'cash_order']);
 
 // Admins routes 
 // add category route 
@@ -72,3 +76,10 @@ Route::get('/delete_product/{id}',[AdminController::class,'delete_product']);
 Route::get('/update_product/{id}',[AdminController::class,'update_product']);
 
 Route::post('/updated_products/{id}',[AdminController::class,'posted_updated_products']);
+
+
+Route::get('/order',[AdminController::class,'order']);
+
+Route::get('/delivered/{id}',[AdminController::class,'delivered']);
+
+Route::get('/send_email/{id}',[AdminController::class,'send_email']);

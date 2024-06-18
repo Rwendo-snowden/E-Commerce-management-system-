@@ -38,6 +38,10 @@
       <!-- arrival section -->
      {{-- @include('home/arrival') --}}
       <!-- end arrival section -->
+
+      @if(Cookie::get('recommended')!==null)
+      @include('home/recommeded')
+      @endif
       
       <!-- product section -->
      @include('home/product')
