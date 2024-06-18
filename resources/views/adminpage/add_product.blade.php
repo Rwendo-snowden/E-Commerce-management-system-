@@ -101,6 +101,8 @@
        
     <!-- container-scroller -->
     <!-- plugins:js -->
+    @include('sweetalert::alert')
+
     @include('adminpage/scripts')
   </body>
 </html>

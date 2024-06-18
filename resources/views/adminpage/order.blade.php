@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     @include('adminpage/css')
   </head>
   <style>
@@ -61,8 +63,8 @@
                        
                     <td>
                         @if($product->delivery_status=='processing')
-                        <a href="{{url('delivered',$product->id)}}" class="btn btn-success"> deliver</a>
-                        <a href="{{url('send_email',$product->id)}}" class="btn btn-primary"> send email</a>
+                        <a href="{{url('delivered',$product->id)}}" class="btn btn-success" onclick="confirmation(event)"> deliver</a>
+                        {{-- <a href="{{url('send',$product->id)}}" class="btn btn-primary"> send email</a> --}}
                         @else
 
                         <p style="color: green"> delivered</p>
@@ -80,6 +82,30 @@
        </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    @include('sweetalert::alert')
+
     @include('adminpage/scripts')
+    
+    <script>
+        function confirmation(ev) {
+          ev.preventDefault();
+          var urlToRedirect = ev.currentTarget.getAttribute('href');  
+          console.log(urlToRedirect); 
+          swal({
+              title: "Are you sure to confrim delivery",
+              text: "You will not be able to revert this!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willCancel) => {
+              if (willCancel) {                
+                  window.location.href = urlToRedirect;
+                 
+              }  
+  
+          });   
+      }
+  </script>
   </body>
 </html>

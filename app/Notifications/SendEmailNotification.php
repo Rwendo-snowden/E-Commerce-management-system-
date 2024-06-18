@@ -37,8 +37,8 @@ class SendEmailNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->greeting($this->$details['greeting'])
-                    ->line($this->$details['greeting'])
+                    ->greeting($this->details['greeting'])
+                    ->line($this->details['greeting'])
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }

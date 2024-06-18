@@ -23,7 +23,7 @@
                 </li>
              
                 <li class="nav-item">
-                   <a class="nav-link" href= "{{url('/')}}">Contact</a>
+                   <a class="nav-link" href= "{{url('/contactUs')}}">Contact</a>
                 </li>
 
                
@@ -63,7 +63,7 @@
             </li>
             
             <li class="nav-item">
-               <a class="nav-link" href= "{{url('/')}}">Contact</a>
+               <a class="nav-link" href= "{{url('/contactUs')}}">Contact</a>
             </li>
             <li class="nav-item">
                <a class="nav-link" href= "{{url('/showcart')}}">Cart</a>

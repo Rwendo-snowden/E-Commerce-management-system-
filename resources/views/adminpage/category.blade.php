@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <style>
         .div_center{
             text-align: center;
@@ -71,7 +73,7 @@
                     
                     <tr>
                         <td>{{$data->category_name}}</td>
-                    <td> <a href="{{url('delete_category',$data->id)}}" class="btn btn-danger"> delete</a></td>
+                    <td> <a href="{{url('delete_category',$data->id)}}" class="btn btn-danger" onclick=" confirmation(event)"> delete</a></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -83,5 +85,26 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('adminpage/scripts')
+    <script>
+        function confirmation(ev) {
+          ev.preventDefault();
+          var urlToRedirect = ev.currentTarget.getAttribute('href');  
+          console.log(urlToRedirect); 
+          swal({
+              title: "Are you sure to Delete this Category",
+              text: "You will not be able to revert this!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willCancel) => {
+              if (willCancel) {                
+                  window.location.href = urlToRedirect;
+                 
+              }  
+  
+          });   
+      }
+  </script>
   </body>
 </html>

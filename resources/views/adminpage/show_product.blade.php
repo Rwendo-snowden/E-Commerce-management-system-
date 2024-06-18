@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {{--  this is the sweet arlert cdn link  --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{--  --}}
+
     <style>
         .div_center{
             text-align: center;
@@ -71,7 +75,7 @@
                         <td>{{$product->category}}</td>
                         <td>{{$product->discount_price}}</td>
                         <td><img class="img_size" src="products/{{$product->image}}" alt=""></td>
-                    <td> <a href="{{url('delete_product',$product->id)}}" class="btn btn-danger"> delete</a> <a href="{{url('update_product',$product->id)}}" class="btn btn-primary"> edit</a></td>
+                    <td> <a href="{{url('delete_product',$product->id)}}" class="btn btn-danger" onclick="confirmation(event) " > delete</a> <a href="{{url('update_product',$product->id)}}" class="btn btn-primary"> edit</a></td>
                  
                     </tr>
                     @endforeach
@@ -83,6 +87,31 @@
        
     <!-- container-scroller -->
     <!-- plugins:js -->
+    @include('sweetalert::alert')
+
     @include('adminpage/scripts')
+    
+    <script>
+        function confirmation(ev) {
+          ev.preventDefault();
+          var urlToRedirect = ev.currentTarget.getAttribute('href');  
+          console.log(urlToRedirect); 
+          swal({
+              title: "Are you sure to Delete this product",
+              text: "You will not be able to revert this!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willCancel) => {
+              if (willCancel) {                
+                  window.location.href = urlToRedirect;
+                 
+              }  
+  
+          });   
+      }
+  </script>
+   
   </body>
 </html>

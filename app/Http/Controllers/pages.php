@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class pages extends Controller
@@ -179,4 +181,23 @@ class pages extends Controller
 
         return redirect()->back()->with('message','we recived your order .We will connect with you soon...');
     }
+
+   public function contactUs(){
+
+    return view('home.contactUs');
+   }
+
+   public function contact(Request $request){
+
+    $contact= new Contact;
+    $contact->name=$request->name;
+    $contact->email=$request->email;
+    $contact->message=$request->message;
+    $contact->delivery_status='processing';
+
+    Alert::success('Successfully', "Message recieved successfully" );
+
+    $contact->save();
+    return redirect()->back();
+   }
 }

@@ -54,6 +54,10 @@ Route::get('/delete_cart/{id}',[pages::class,'delete_cart']);
 
 Route::get('/cash_order',[pages::class,'cash_order']);
 
+Route::get('/contactUs',[pages::class,'contactUs']);
+
+Route::post('/contact',[pages::class,'contact']);
+
 // Admins routes 
 // add category route 
 
@@ -83,3 +87,10 @@ Route::get('/order',[AdminController::class,'order']);
 Route::get('/delivered/{id}',[AdminController::class,'delivered']);
 
 Route::get('/send_email/{id}',[AdminController::class,'send_email']);
+
+// send emails through mailer 
+Route::get('/send/{id}',[AdminController::class,'send']);
+
+Route::get('/sentmessages',[AdminController::class,'sentMessages']);
+
+Route::get('/smsdelivered/{id}',[AdminController::class,'smsdelivered']);
